@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | ISTE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            padding: 10rem 0 5rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3a8a 100%);
+            color: white;
+            text-align: center;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--white);
+            border: 4px solid var(--secondary-color);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform var(--transition-normal);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-date {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .right {
+                left: 0;
+            }
+        }
+
+        .mission-vision-box {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-vision-box i {
+            font-size: 5rem;
+            position: absolute;
+            right: -10px;
+            bottom: -20px;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">ISTE</a>
+
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="main.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="animate-on-scroll" style="font-size: 3rem; margin-bottom: 1rem; color: white;">About ISTE</h1>
+            <p class="animate-on-scroll"
+                style="transition-delay: 0.1s; font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: #e2e8f0;">
+                Discover our history, mission, and the incredible journey we've embarked upon.
+            </p>
+        </div>
+    </header>
+
+    <!-- Description Section -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="grid-2" style="align-items: center;">
+                <div class="animate-on-scroll">
+                    <h2 style="font-size: 2.25rem; margin-bottom: 1.5rem;">Who We Are</h2>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem; text-align: justify;">
+                        The Indian Society for Technical Education (ISTE) is a national organization that focuses on
+                        improving the quality of technical education in India.
+                    </p>
+                    <p style="color: var(--text-light); text-align: justify;">
+                        The ISTE Student Chapter at ADIT works towards bridging the gap between theoretical knowledge
+                        and practical application through hands-on learning, technical events, workshops, and
+                        collaborative projects.
+                    </p>
+                </div>
+                <div class="animate-on-scroll" style="transition-delay: 0.2s;">
+                    <img src="tech-about.svg"
+                        alt="Team meeting"
+                        style="border-radius: var(--border-radius-lg); box-shadow: var(--shadow-xl);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="grid-2">
+                <div class="mission-vision-box animate-on-scroll">
+                    <h2 style="color: white; margin-bottom: 1rem;">Our Mission</h2>
+                    <p style="color: #cbd5e1; font-size: 1.1rem;">
+                        To promote learning, teamwork, creativity, and real-world problem solving through technical
+                        activities and practical exposure.
+                    </p>
+                    <i class="fas fa-bullseye"></i>
+                </div>
+
+                <div class="mission-vision-box animate-on-scroll"
+                    style="background-color: var(--secondary-color); transition-delay: 0.2s;">
+                    <h2 style="color: white; margin-bottom: 1rem;">Our Vision</h2>
+                    <p style="color: #e0f2fe; font-size: 1.1rem;">
+                        To create technically skilled, innovative, and future-ready engineers.
+                    </p>
+                    <i class="fas fa-eye"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why ISTE & Acknowledgement -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="grid-2">
+                <div class="animate-on-scroll">
+                    <h2 style="font-size: 2.25rem; margin-bottom: 1.5rem; color: var(--primary-color);">Why ISTE at
+                        ADIT?</h2>
+                    <p style="color: var(--text-light); text-align: justify; line-height: 1.8;">
+                        The chapter provides students with opportunities to participate in technical workshops,
+                        seminars, coding activities, and innovation-driven events that help strengthen both academic and
+                        practical understanding.
+                    </p>
+                </div>
+                <div class="animate-on-scroll"
+                    style="transition-delay: 0.2s; background: white; padding: 2rem; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; box-shadow: var(--shadow-md);">
+                    <h3
+                        style="font-size: 1.5rem; margin-bottom: 1.25rem; color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem; display: inline-block;">
+                        Academic Acknowledgement</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1rem; font-size: 0.95rem;">
+                        This mini project has been developed as part of the <strong>Basic Web Designing Semester
+                            2</strong> curriculum at A.D. Patel Institute of Technology (ADIT).
+                    </p>
+                    <p style="color: var(--text-light); margin-bottom: 0.5rem; font-size: 0.95rem;">
+                        We sincerely acknowledge the guidance and support of:
+                    </p>
+                    <ul
+                        style="color: var(--text-dark); font-weight: 600; margin-bottom: 1.5rem; margin-left: 1rem; list-style-type: disc;">
+                        <li>Faculty Coordinator: Dr. Shital Gondaliya</li>
+                    </ul>
+                    <div
+                        style="background: var(--bg-color); padding: 1rem; border-radius: var(--border-radius-sm); text-align: center;">
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.25rem;">Developed by</p>
+                        <p style="font-weight: 600; color: var(--primary-color);">Rutva Jakhiya and Ushna Khan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col" style="grid-column: span 1.5;">
+                    <h2 class="logo" style="color: white; margin-bottom: 1rem;">
+                        <img src="iste-logo.png" alt="ISTE Logo"
+                            style="height: 40px; display: inline-block; vertical-align: middle; margin-right: 10px; background: white; border-radius: 50%; padding: 2px;">
+                        ISTE <span> ADIT</span>
+                    </h2>
+                    <p>The ISTE Student Chapter of A.D. Patel Institute of Technology (ADIT), under Charutar Vidya
+                        Mandal University (CVMU), is dedicated to enhancing technical knowledge and practical skills
+                        among students.</p>
+                </div>
+                <div class="footer-col" style="grid-column: span 1.5;">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links" style="display: flex; gap: 2rem;">
+                        <div>
+                            <li><a href="main.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                        </div>
+                        <div>
+                            <li><a href="events.html">Events</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p style="color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-envelope"
+                            style="margin-right: 10px;"></i> iste@adit.ac.in</p>
+                    <p style="color: #cbd5e1;"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> ADIT
+                        Campus</p>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; flex-direction: column; gap: 0.5rem; padding-top: 1.5rem;">
+                <p style="font-weight: 500; color: #e2e8f0;">Developed by Rutva Jakhiya & Ushna Khan | BWD Semester 2
+                    Mini Project | ADIT | CVMU</p>
+                <p style="font-size: 0.9rem; color: #cbd5e1;">Guided by Dr. Shital Gondaliya</p>
+                <p style="margin-top: 0.5rem; color: #94a3b8;">&copy; <span id="year"></span> ISTE Students' Chapter
+                    ADIT. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

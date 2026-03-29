@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration | ISTE </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            padding: 8rem 0 3rem;
+            background: var(--bg-color);
+        }
+
+        .form-card {
+            background-color: var(--white);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--border-radius-sm);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+            background-color: #f8fafc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+            background-color: var(--white);
+        }
+
+        /* Disabled input style for event name */
+        .form-control:read-only {
+            background-color: #e2e8f0;
+            cursor: not-allowed;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .validation-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-control.invalid {
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">ISTE</a>
+
+            <a href="events.html" class="btn btn-outline" style="padding: 0.5rem 1rem;">Back to Events</a>
+        </div>
+    </nav>
+
+    <!-- Registration Section -->
+    <section class="page-header">
+        <div class="container">
+            <div class="form-card animate-on-scroll">
+                <h2 class="form-title">Event Registration</h2>
+
+                <form id="registrationForm" novalidate>
+                    <!-- Pre-filled Event Name -->
+                    <div class="form-group">
+                        <label class="form-label" for="eventName">Event Name</label>
+                        <input type="text" id="eventName" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="fullName">Full Name</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="Enter your full name"
+                            required minlength="3">
+                        <div class="validation-message" id="nameError">Please enter a valid name (min 3 chars).</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">College Email ID</label>
+                        <input type="email" id="email" class="form-control" placeholder="example@college.edu" required>
+                        <div class="validation-message" id="emailError">Please enter a valid email address.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regNumber">Registration / Roll Number</label>
+                        <input type="text" id="regNumber" class="form-control" placeholder="e.g. 21BCE1234" required
+                            pattern="[a-zA-Z0-9]+">
+                        <div class="validation-message" id="regError">Please enter your roll number.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="branch">Branch / Department</label>
+                        <select id="branch" class="form-control" required>
+                            <option value="">Select your branch</option>
+                            <option value="CSE">Computer Science</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="ECE">Electronics & Communication</option>
+                            <option value="MECH">Mechanical Engineering</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                        <div class="validation-message" id="branchError">Please select a branch.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-register">
+                        Complete Registration <i class="fas fa-check-circle" style="margin-left: 5px;"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Fetch Event Name from URL Parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventParam = urlParams.get('event');
+
+            const eventInput = document.getElementById('eventName');
+            if (eventParam) {
+                eventInput.value = eventParam;
+            } else {
+                eventInput.value = "General Registration";
+            }
+
+            // 2. Form Validation & Submission
+            const form = document.getElementById('registrationForm');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+
+                // Validate Name
+                const nameInput = document.getElementById('fullName');
+                if (nameInput.value.length < 3) {
+                    nameInput.classList.add('invalid');
+                    document.getElementById('nameError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    nameInput.classList.remove('invalid');
+                    document.getElementById('nameError').style.display = 'none';
+                }
+
+                // Validate Email
+                const emailInput = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    emailInput.classList.add('invalid');
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    emailInput.classList.remove('invalid');
+                    document.getElementById('emailError').style.display = 'none';
+                }
+
+                // Validate Roll No
+                const regInput = document.getElementById('regNumber');
+                if (!regInput.value) {
+                    regInput.classList.add('invalid');
+                    document.getElementById('regError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    regInput.classList.remove('invalid');
+                    document.getElementById('regError').style.display = 'none';
+                }
+
+                // Validate Branch
+                const branchInput = document.getElementById('branch');
+                if (!branchInput.value) {
+                    branchInput.classList.add('invalid');
+                    document.getElementById('branchError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    branchInput.classList.remove('invalid');
+                    document.getElementById('branchError').style.display = 'none';
+                }
+
+                if (isValid) {
+                    // 3. Save to localStorage
+                    const userData = {
+                        name: nameInput.value,
+                        email: emailInput.value,
+                        event: eventInput.value,
+                        date: new Date().toLocaleDateString()
+                    };
+
+                    localStorage.setItem('iste_registration', JSON.stringify(userData));
+
+                    // Show success
+                    showToast('Registration successful! Redirecting to certificate...', 'success');
+
+                    // 4. Redirect to certificate after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'certificate.html';
+                    }, 2000);
+                }
+            });
+
+            // Remove invalid class on input
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    input.classList.remove('invalid');
+                    const errorMsg = document.getElementById(input.id + 'Error');
+                    if (errorMsg) errorMsg.style.display = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

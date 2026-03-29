@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | ISTE </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            padding: 10rem 0 5rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3a8a 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            background: var(--white);
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .contact-info {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            opacity: 0.2;
+        }
+
+        .contact-info::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            opacity: 0.2;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .contact-form-container {
+            padding: 3rem 4rem 3rem 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius-sm);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+            background-color: #f8fafc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+            background-color: var(--white);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 900px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">ISTE</a>
+
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="main.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="animate-on-scroll" style="font-size: 3rem; margin-bottom: 1rem; color: white;">Get in Touch</h1>
+            <p class="animate-on-scroll"
+                style="transition-delay: 0.1s; font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: #e2e8f0;">
+                Have questions or want to collaborate? We'd love to hear from you.
+            </p>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="bg-light pb-5">
+        <div class="container">
+            <div class="contact-container animate-on-scroll">
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2 style="color: white; margin-bottom: 1rem;">Contact Information</h2>
+                    <p style="color: #cbd5e1; margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.6;">
+                        For queries, collaborations, or participation details, feel free to contact the ISTE Student
+                        Chapter.
+                    </p>
+
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 style="color: white; margin-bottom: 0.25rem;">Our Location</h4>
+                            <p style="color: #cbd5e1;">ADIT College Campus</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4 style="color: white; margin-bottom: 0.25rem;">Email Address</h4>
+                            <p style="color: #cbd5e1;">iste@adit.ac.in</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4 style="color: white; margin-bottom: 0.25rem;">Phone Number</h4>
+                            <p style="color: #cbd5e1;">+1 (555) 123-4567<br>Mon-Fri 9:00am - 5:00pm</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 3rem; position: relative; z-index: 1;">
+                        <h4 style="color: white; margin-bottom: 1rem;">Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2 style="margin-bottom: 2rem;">Send us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="How can we help you?"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your message here..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-submit">Send Message <i
+                                class="fas fa-paper-plane" style="margin-left: 5px;"></i></button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" style="padding-top: 5rem;">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col" style="grid-column: span 1.5;">
+                    <h2 class="logo" style="color: white; margin-bottom: 1rem;">
+                        <img src="iste-logo.png" alt="ISTE Logo"
+                            style="height: 40px; display: inline-block; vertical-align: middle; margin-right: 10px; background: white; border-radius: 50%; padding: 2px;">
+                        ISTE <span>ADIT</span>
+                    </h2>
+                    <p>The ISTE Student Chapter of A.D. Patel Institute of Technology (ADIT), under Charutar Vidya
+                        Mandal University (CVMU), is dedicated to enhancing technical knowledge and practical skills
+                        among students.</p>
+                </div>
+                <div class="footer-col" style="grid-column: span 1.5;">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links" style="display: flex; gap: 2rem;">
+                        <div>
+                            <li><a href="main.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                        </div>
+                        <div>
+                            <li><a href="events.html">Events</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p style="color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-envelope"
+                            style="margin-right: 10px;"></i> iste@adit.ac.in</p>
+                    <p style="color: #cbd5e1;"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> ADIT
+                        Campus</p>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; flex-direction: column; gap: 0.5rem; padding-top: 1.5rem;">
+                <p style="font-weight: 500; color: #e2e8f0;">Developed by Rutva Jakhiya & Ushna Khan | BWD Semester 2
+                    Mini Project | ADIT | CVMU</p>
+                <p style="font-size: 0.9rem; color: #cbd5e1;">Guided by Dr. Shital Gondaliya</p>
+                <p style="margin-top: 0.5rem; color: #94a3b8;">&copy; <span id="year"></span> ISTE Students' Chapter
+                    ADIT. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Form Submit Handler
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Show toast message from script.js
+            showToast('Thank you! Your message has been sent successfully.', 'success');
+            // Form reset
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

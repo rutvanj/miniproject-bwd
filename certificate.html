@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate | ISTE </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-color);
+            padding: 2rem;
+        }
+
+        .cert-container {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Canvas Wrapper to make it responsive */
+        .canvas-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: auto;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        canvas {
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-md);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            padding: 2rem;
+            background: #fee2e2;
+            border-radius: var(--border-radius-md);
+            margin: 2rem 0;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+        <div class="cert-container animate-on-scroll">
+            <h2 style="color: var(--primary-color);">Congratulations!</h2>
+            <p style="color: var(--text-light); margin-top: 0.5rem;" id="subtitleText">
+                Generating your official certificate of participation...
+            </p>
+
+            <div id="errorMsg" class="error-msg">
+                <i class="fas fa-exclamation-triangle fa-2x"></i>
+                <h3 style="margin: 1rem 0;">No Registration Data Found</h3>
+                <p>Please register for an event first to generate a certificate.</p>
+                <a href="events.html" class="btn btn-primary" style="margin-top: 1rem;">Go to Events</a>
+            </div>
+
+            <div class="canvas-wrapper" id="canvasContainer">
+                <!-- Canvas dimension scaled down slightly for web view, exported at full res -->
+                <canvas id="certificateCanvas" width="800" height="600"></canvas>
+            </div>
+
+            <div class="actions" id="actionButtons" style="display: none;">
+                <button id="downloadBtn" class="btn btn-primary">
+                    <i class="fas fa-download" style="margin-right: 8px;"></i> Download PNG
+                </button>
+                <a href="main.html" class="btn btn-outline">Go to Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('certificateCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // 1. Fetch user data from localStorage
+            const rawData = localStorage.getItem('iste_registration');
+
+            if (!rawData) {
+                document.getElementById('canvasContainer').style.display = 'none';
+                document.getElementById('subtitleText').style.display = 'none';
+                document.getElementById('errorMsg').style.display = 'block';
+                return;
+            }
+
+            const userData = JSON.parse(rawData);
+            document.getElementById('actionButtons').style.display = 'flex';
+            document.getElementById('subtitleText').textContent = "Here is your official certificate. You can download and share it.";
+
+            // 2. Draw Certificate on Canvas
+            function drawCertificate() {
+                // Background
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Border Style Pattern
+                ctx.strokeStyle = '#0b1d3a'; // Primary Color
+                ctx.lineWidth = 20;
+                ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+
+                ctx.strokeStyle = '#0ea5e9'; // Secondary Color
+                ctx.lineWidth = 5;
+                ctx.strokeRect(35, 35, canvas.width - 70, canvas.height - 70);
+
+                // Corner accents
+                ctx.fillStyle = '#0b1d3a';
+                // Top Left
+                ctx.beginPath(); ctx.moveTo(20, 20); ctx.lineTo(120, 20); ctx.lineTo(20, 120); ctx.fill();
+                // Bottom Right
+                ctx.beginPath(); ctx.moveTo(canvas.width - 20, canvas.height - 20); ctx.lineTo(canvas.width - 120, canvas.height - 20); ctx.lineTo(canvas.width - 20, canvas.height - 120); ctx.fill();
+
+                // Logo Text (Top center)
+                ctx.font = 'bold 36px "Poppins", sans-serif';
+                ctx.fillStyle = '#0b1d3a';
+                ctx.textAlign = 'center';
+                ctx.fillText('A.D. Patel Institute of Technology', canvas.width / 2, 90);
+
+                ctx.font = '18px "Poppins", sans-serif';
+                ctx.fillStyle = '#64748b';
+                ctx.fillText('A Constituent College of CVM University', canvas.width / 2, 115);
+
+                ctx.font = 'bold 24px "Poppins", sans-serif';
+                ctx.fillStyle = '#0ea5e9';
+                ctx.fillText('ISTE Student Chapter', canvas.width / 2, 150);
+
+                // Certificate Title
+                ctx.font = 'bold 55px "Times New Roman", Times, serif';
+                ctx.fillStyle = '#0ea5e9';
+                ctx.fillText('CERTIFICATE', canvas.width / 2, 230);
+
+                ctx.font = 'italic 20px "Times New Roman", Times, serif';
+                ctx.fillStyle = '#1e293b';
+                ctx.fillText('OF PARTICIPATION', canvas.width / 2, 260);
+
+                // Body Text
+                ctx.font = '20px "Poppins", sans-serif';
+                ctx.fillStyle = '#64748b';
+                ctx.fillText('This is to proudly present that', canvas.width / 2, 330);
+
+                // Participant Name
+                ctx.font = 'bold 40px "Poppins", sans-serif';
+                ctx.fillStyle = '#0b1d3a';
+                ctx.fillText(userData.name.toUpperCase(), canvas.width / 2, 390);
+
+                // Underline name
+                ctx.beginPath();
+                ctx.moveTo((canvas.width / 2) - 200, 400);
+                ctx.lineTo((canvas.width / 2) + 200, 400);
+                ctx.strokeStyle = '#0ea5e9';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Event text
+                ctx.font = '18px "Poppins", sans-serif';
+                ctx.fillStyle = '#64748b';
+                ctx.fillText('has actively participated and successfully completed the', canvas.width / 2, 440);
+
+                // Event Name
+                ctx.font = 'bold 24px "Poppins", sans-serif';
+                ctx.fillStyle = '#1e293b';
+                ctx.fillText(userData.event, canvas.width / 2, 480);
+
+                // Bottom signatures area
+                ctx.font = '16px "Poppins", sans-serif';
+                ctx.fillStyle = '#1e293b';
+
+                // Date
+                ctx.fillText('Date: ' + userData.date, 150, 530);
+                ctx.beginPath();
+                ctx.moveTo(100, 540); ctx.lineTo(250, 540);
+                ctx.stroke();
+
+                // Signature
+                ctx.font = 'italic 22px "Brush Script MT", cursive';
+                ctx.fillText('Dr. Shital Gondaliya', canvas.width - 150, 520);
+
+                ctx.font = '16px "Poppins", sans-serif';
+                ctx.fillText('Faculty Coordinator', canvas.width - 150, 540);
+                ctx.beginPath();
+                ctx.moveTo(canvas.width - 230, 525); ctx.lineTo(canvas.width - 70, 525);
+                ctx.stroke();
+            }
+
+            // Ensure fonts are loaded before drawing (best effort timeout)
+            // Ideally should use document.fonts.ready, but this works well for web fonts
+            document.fonts.ready.then(() => {
+                drawCertificate();
+            }).catch(() => {
+                setTimeout(drawCertificate, 500);
+            });
+
+            // 3. Download Logic
+            document.getElementById('downloadBtn').addEventListener('click', () => {
+                const link = document.createElement('a');
+                link.download = `ISTE_Certificate_${userData.name.replace(/\s+/g, '_')}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        });
+    </script>
+</body>
+
+</html>
